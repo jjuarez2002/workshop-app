@@ -1,0 +1,20 @@
+.servContainer {
+  margin: 0;
+  padding: 1rem;
+}
+.servHeader,
+.servBody {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+}
+.servHeader {
+  background: var(--bs-secondary);
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+.servBody {
+  padding: 1rem;
+  background: var(--bs-light);
+}
