@@ -1,18 +1,31 @@
 import React from "react";
 
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-
+import axios from "axios";
 import styles from "../styles/Service.module.css";
+
+const url = "http://localhost:8000";
 
 const Service = (props) => {
   const data = props.data;
+  const serviceName = data.title;
 
   const [serviceTime, setServiceTime] = React.useState("");
   const [comments, setComments] = React.useState("");
 
   const handleSubmit = () => {
     // submit the form information to the backend
-    // with user name, id, email, etc.
+    // with serviceName, serviceTime, comments
+    // const dataOut = {
+    //   serviceName: serviceName,
+    //   serviceTime: serviceTime,
+    //   comments: comments,
+    // };
+    const dataOut = { serviceName, serviceTime, comments };
+
+    axios.post(url + "/submit-request", dataOut).then((res) => {
+      console.log(res);
+    }).catch((err)=> console.log(err));
 
     // for now, console log the values
     console.log("current service time entered:", serviceTime);
@@ -42,6 +55,7 @@ const Service = (props) => {
                 onChange={(e) => setServiceTime(e.target.value)}
               ></Form.Control>
             </Form.Group>
+
             <Form.Group>
               <Form.Label>Enter any comments you have:</Form.Label>
               <Form.Control
@@ -50,6 +64,7 @@ const Service = (props) => {
                 onChange={(e) => setComments(e.target.value)}
               ></Form.Control>
             </Form.Group>
+
             <Button variant="primary" type="button" onClick={handleSubmit}>
               Submit form
             </Button>
