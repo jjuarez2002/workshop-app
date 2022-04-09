@@ -24,7 +24,7 @@ const Dashboard = () => {
     const servData = SERVICES;
 
     const newContent = servData.map((item) => {
-      return <Service data={item} />;
+      return <Service key={'ex-' + item.title} data={item} />;
     });
 
     setContent(newContent);
